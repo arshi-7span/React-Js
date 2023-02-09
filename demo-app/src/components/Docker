@@ -1,0 +1,50 @@
+Connect docker mysql and use in your system
+
+1. pull image of mysql
+
+- docker pull mysql:8
+
+2. set root password if you are getting issues with env variable
+
+- docker run -e MYSQL_ROOT_PASSWORD=123 -d mysql
+
+3. create container
+
+- docker container run --name mysqldb --network springboot-mysql-net -e MYSQL_ROOT_PASSWORD=123 -d -p 127.0.0.1:3306:3306 mysql
+
+4. run mysql in docker using command line and perform any operation with your database
+
+- docker exec -it <container-name> mysql -uroot -p123 -e 'show databases;'
+- docker exec -it <container-name> mysql -uroot -p123
+- show databases;
+- show table;
+  docker run --name mysqldb --network springboot-mysql-net MYSQL_ROOT_PASSWORD=123 -e MYSQL_DATABASE=userdb -d mysql
+
+------------------ Images -----------------------------------------------
+Images are available in docker hub so you can pull the images from the docker there are some official images are available and also custom images according to your requirements and rating of the image you can choose the docker image
+
+1. pull image from the docker hub
+
+- docker pull <image-name>:<image-version>
+  ex : docker pull mysql (if you not provide any version then it will pull latest version of the image)
+  ex: docker pull mysql:8 (this is the specific version of the images)
+  ex: docker pull nginx
+
+2. check the history of image
+
+- docker history <image-name>:<image-version>
+
+3. check the metadata of image using inspect
+
+- docker image inspect <image-name>:<image-version>
+
+4. check all the available images
+
+- docker image ls
+
+5. Docker hub it should contains the same image with diff tag id so while you are pull image using the tag and that tagged image contains the same image ID then it will not create the another image in cache
+
+- docker pull nginx
+  docker pull nginx:mainline
+
+6. create docker file basic
